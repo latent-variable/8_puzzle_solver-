@@ -47,6 +47,8 @@ class eight_puzzle{
     void Misplaced_tile();
     void Manhattan_distance();
     
+    //check for solution
+    bool check_solve();
         
 };
 
@@ -54,18 +56,40 @@ class eight_puzzle{
 
 
 int main() {
-    
     //seed random numbers ones 
     srand(time(0));
     
-    
+    int move;
     eight_puzzle one;
-    
     one.rand_fill();
-    one.print();
-    one.blank_right();
-    one.print();
+   
+   while(1){
+        
+       
+        one.print();
+        
+        cout << "Move blank up-1, down-2, left-3, right-4"<<endl;
+        cin >> move; 
+        if (move == 1 ){
+            one.blank_up();
+        }
+        if (move == 2 ){
+            one.blank_down();
+        }
+        if (move == 3 ){
+            one.blank_left();
+        }
+        if (move == 4 ){
+            one.blank_right();
+        }
+        
+        if(one.check_solve()){
+            cout << "Done!" << endl;
+            return 0;
+        }
     
+        
+    }   
     return 0;
     
 }
@@ -189,4 +213,16 @@ void eight_puzzle::Manhattan_distance(){
     
     
 }
+
+////////////////////////////////////////////////////
+//Well we want to know when we are done! Right?
+///////////////////////////////////////////////////
+bool eight_puzzle::check_solve(){
+    int val = 1;
+    for(int i = 0; i < 8; i++){
+        if(puzzle_index[i] != val) return false;
+        val++;
+    }
     
+    return true; 
+}
