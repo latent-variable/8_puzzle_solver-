@@ -1,10 +1,14 @@
-all: eight_puzzle
+CC=g++
+CC_FLAGS=-Wall --std=c++11
+EXEC=eight_puzzle_solver.out
+SOURCES=$(wildcard *.cpp)
+OBJECTS=$(SOURCES:.cpp=.o)
 
-%: %.cpp
-	g++ -std=c++11 $< -o eight_puzzle_solver
+$(EXEC): $(OBJECTS)
+	$(CC) $(OBJECTS) -o $(EXEC)
 
-%: %.c
-	gcc $< -o $@
+%.o: %.cpp
+	$(CC) -c $(CC_FLAGS) $< -o $@
 
 clean:
-	rm eight_puzzle_solver
+	rm -f $(EXEC) $(OBJECTS)
