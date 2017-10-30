@@ -23,7 +23,7 @@ class eight_puzzle{
     //print function 
     void print();
     void rand_fill();
-    void manual_fill();
+    void manual_fill(int p[]);
     
     //check for solution
     bool check_solve();

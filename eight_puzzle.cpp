@@ -88,7 +88,7 @@ void eight_puzzle::print(){
 }
 
 void eight_puzzle::rand_fill(){
-    
+    srand(time(0));
     int r1,r2;
     int temp;
     for(int x = 0; x < 9; x++){
@@ -112,7 +112,11 @@ void eight_puzzle::rand_fill(){
  int * eight_puzzle::get_puzzle(){
      return puzzle;
  }
-void eight_puzzle::manual_fill(){
+void eight_puzzle::manual_fill(int p[9]){
+    for(int i = 0; i < 9; i++){
+        if(p[i] == 0) blank = i;
+        puzzle[i] = p[i];
+    }
         
 }
 

@@ -3,10 +3,12 @@
 /*
 #include <iostream>
 #include <cstdlib>
-#include <stack>
-#include <vector>
+
 #include "eight_puzzle.h"
 */
+#include <queue>
+#include <vector>
+
 using namespace std;
 class eight_puzzle;
 
@@ -18,7 +20,7 @@ class solver{
         void operators(eight_puzzle*);
         bool check_tree(eight_puzzle*);
         bool compare_puzzle(int*,int*);
-        void push();
+        int get_moves();
         
         
         //solving solutions 
@@ -27,7 +29,9 @@ class solver{
         void Manhattan_distance();
     
     private:
-        stack<eight_puzzle*> puzzle_stack;
+    
+        int moves = 0;
+        queue<eight_puzzle*> puzzle_queue;
         vector<eight_puzzle*> puzzle_tree;
     
 };

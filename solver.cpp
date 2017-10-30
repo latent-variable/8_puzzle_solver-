@@ -1,6 +1,6 @@
 #include <iostream>
 #include <cstdlib>
-#include <stack>
+#include <queue>
 #include <vector>
 #include "eight_puzzle.h"
 #include "solver.h"
@@ -14,7 +14,7 @@ using namespace std;
 //solver class stuff
 ///////////////////////////////////////////////////////////
 solver::solver(eight_puzzle* p){
-    puzzle_stack.push(p);
+    puzzle_queue.push(p);
     puzzle_tree.push_back(p);
     
 }
@@ -29,8 +29,7 @@ void solver::operators(eight_puzzle *p){
         
         test_tree = check_tree(a);
         if(test_tree == true ){
-            //a->print();
-            puzzle_stack.push(a);
+            puzzle_queue.push(a);
             puzzle_tree.push_back(a);
         }
     }    
@@ -40,8 +39,7 @@ void solver::operators(eight_puzzle *p){
        
         test_tree = check_tree(b);
         if(test_tree == true ){
-            //b->print();
-            puzzle_stack.push(b);
+            puzzle_queue.push(b);
             puzzle_tree.push_back(b);
         }
     
@@ -52,8 +50,7 @@ void solver::operators(eight_puzzle *p){
         
         test_tree = check_tree(c);
         if(test_tree == true ){
-            //c->print();
-            puzzle_stack.push(c);
+            puzzle_queue.push(c);
             puzzle_tree.push_back(c);
         }
     
@@ -65,12 +62,15 @@ void solver::operators(eight_puzzle *p){
          test_tree = check_tree(d);
          if(test_tree == true ){
             //d->print();
-            puzzle_stack.push(d);
+            puzzle_queue.push(d);
             puzzle_tree.push_back(d);
         }
     
     }
 }
+////////////////////////////////////////////////////////
+//flag mess below beware
+/////////////////////////////////////////////
 bool solver::check_tree(eight_puzzle* p){
    
     bool flag = false;
@@ -80,7 +80,6 @@ bool solver::check_tree(eight_puzzle* p){
                 return false;
             }
     }
-    
     return true;
 }
 bool solver::compare_puzzle(int*a,int*b){
@@ -91,10 +90,16 @@ bool solver::compare_puzzle(int*a,int*b){
             }
     return true;
 }
+ int solver::get_moves(){
+     
+     return moves;
+     
+ }
 /////////////////////////////////////////////////////
 //AI Magic below here 
 /////////////////////////////////////////////////////
 void solver::Uniform_Cost(){
+    moves = 0;
 /* 
 function general-search(problem, QUEUEING-FUNCTION)  
     nodes = MAKE-QUEUE(MAKE-NODE(problem.INITIAL-STATE)) 
@@ -107,12 +112,13 @@ function general-search(problem, QUEUEING-FUNCTION)
 */
     bool solved = false;
     while(solved == false){
-        if(puzzle_stack.empty()){
+        if(puzzle_queue.empty()){
             cout << "You are a failure!\n";
             break;
         }else{
-            eight_puzzle * p = puzzle_stack.top();
-            puzzle_stack.pop();
+            eight_puzzle * p = puzzle_queue.front();
+            puzzle_queue.pop();
+            moves++;
             p->print();
             solved = p->check_solve();
             

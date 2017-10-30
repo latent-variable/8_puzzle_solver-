@@ -23,18 +23,26 @@ using namespace std;
 
 
 int main() {
-    //seed random numbers ones 
-    srand(time(0));
+    char choice;
+   
+   //seed random numbers ones s
     
-    //int move;
+    int a[9] = {1,2,3,4,5,0,7,8,6};
     eight_puzzle *one = new eight_puzzle();
-    one->rand_fill();
-    one->print();
+    //one->rand_fill();
+    do{
+    
+        one->manual_fill(a);
+        one->print();
+         
+        cout<< "Choose another 8-puzzle?(y/n)\n";
+        cin >> choice;
+    }while(choice == 'n');
     
     solver *s = new solver(one);
     
-    s->operators(one);
     s->Uniform_Cost();
+    cout << "Total moves "<< s->get_moves()<<endl;
    /*
    while(1){
        
