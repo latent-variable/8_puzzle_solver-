@@ -84,23 +84,22 @@ void eight_puzzle::print(){
         else
         cout << puzzle[x] << " | ";
     }
-    cout<<"\n____________"<<blank<<endl;
+    cout<<"\n____________"<<blank+1<<endl;
 }
 
 void eight_puzzle::rand_fill(){
+    
     srand(time(0));
+    
     int r1,r2;
-    int temp;
-    for(int x = 0; x < 9; x++){
-        r1 = rand() % 9;
-        r2 = rand() % 9;
-        if(puzzle[r1] != puzzle[r2]){
-            temp = puzzle[r1];
-            puzzle[r1] = puzzle[r2];
-            puzzle[r2] = temp;
-        }
+    r2 = rand() % 10;
+    for(int x = 0; x < r2; x++){
+        r1 = rand() % 4;
         
-        
+        if(r1 == 0) blank_down();
+        if(r1 == 1) blank_up();
+        if(r1 == 2) blank_left();
+        if(r1 == 3) blank_right();
    }
         
 }
@@ -118,6 +117,44 @@ void eight_puzzle::manual_fill(int p[9]){
         puzzle[i] = p[i];
     }
         
+}
+////////////H
+void eight_puzzle::set_depth(int d){
+    depth = d;
+}
+int eight_puzzle::get_depth(){
+    return depth;
+}
+void eight_puzzle::set_heuristic_misplaced_tile(){
+    for(int i = 1; i < 10; i++ ){
+        if( i != puzzle[i-1]) heuristic++;
+    }
+}
+void eight_puzzle::set_heuristic_manhattan_distance(){
+    int x, z, y;
+    for(int i = 1; i <= 9; i++ ){
+         if (puzzle[i-1] == 0) y = 9;
+         else y = puzzle[i-1];
+         if (i == 3 && puzzle[i-1] == 4 ){
+             heuristic += 3;
+             continue;
+         }
+         if(i == 6 && puzzle[i-1] == 7){
+             heuristic += 3;
+             continue;
+         };
+         z = abs(y - i); 
+         x =   z / 3;
+         x = x + z % 3;
+         heuristic += x;
+    }
+}
+int eight_puzzle::get_heuristic(){
+    return heuristic;
+}
+int eight_puzzle::get_A_star(){
+    
+    return heuristic + depth;
 }
 
 
