@@ -127,14 +127,17 @@ int eight_puzzle::get_depth(){
 }
 void eight_puzzle::set_heuristic_misplaced_tile(){
     for(int i = 1; i < 10; i++ ){
+        if (puzzle[i-1] == 0) continue;
         if( i != puzzle[i-1]) heuristic++;
     }
 }
 void eight_puzzle::set_heuristic_manhattan_distance(){
     int x, z, y;
     for(int i = 1; i <= 9; i++ ){
-         if (puzzle[i-1] == 0) y = 9;
-         else y = puzzle[i-1];
+         if (puzzle[i-1] == 0){
+              continue;
+         }else{ y = puzzle[i-1];}
+         //only two exeptions to this rule 
          if (i == 3 && puzzle[i-1] == 4 ){
              heuristic += 3;
              continue;
@@ -142,12 +145,14 @@ void eight_puzzle::set_heuristic_manhattan_distance(){
          if(i == 6 && puzzle[i-1] == 7){
              heuristic += 3;
              continue;
-         };
+         }
+         
          z = abs(y - i); 
-         x =   z / 3;
-         x = x + z % 3;
+         x = z / 3;
+         x = x + (z%3);
          heuristic += x;
     }
+   ;
 }
 int eight_puzzle::get_heuristic(){
     return heuristic;

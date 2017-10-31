@@ -32,9 +32,10 @@ void solver::operators(eight_puzzle *p, int algo){
     //check posistion of blank tile to return operators
     if(blank > 2){
         eight_puzzle *a =new eight_puzzle(p->get_puzzle());
-        a->blank_up();
         a->set_depth(dp++);                                 //set deptph of child to 
-        test_tree = check_tree(a);
+        test_tree = check_tree(a);       
+        a->blank_up();
+       
         if(test_tree == true ){
             if(algo == 0 ){
                 //wo not need to calculate the heuristic
