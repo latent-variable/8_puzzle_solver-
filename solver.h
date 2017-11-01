@@ -6,15 +6,13 @@
 using namespace std;
 class eight_puzzle;
 
-///////////////prioty based on f(n) = g(n) + f(n)//////////////
+///////////////Prioty based on smallest values of f(n) = g(n) + h(n)////////////
 struct A_star_order{
     bool operator()( eight_puzzle* l,  eight_puzzle* r) 
     {
       return l->get_A_star() > r->get_A_star();
     }
 };
-
-
 
 class solver{
     public:

@@ -39,7 +39,7 @@ void solver::operators(eight_puzzle *p, int algo){
         test_tree = check_tree(a);       
         if(test_tree == true ){
             if(algo == 0 ){
-                //wo not need to calculate the heuristic
+                //we not need to calculate the heuristic
             }else if(algo == 1){
                 a->set_heuristic_misplaced_tile();
             }else if(algo == 2){
@@ -57,7 +57,7 @@ void solver::operators(eight_puzzle *p, int algo){
         test_tree = check_tree(b);
         if(test_tree == true ){
             if(algo == 0 ){
-                //wo not need to calculate the heuristic
+                //we not need to calculate the heuristic
             }else if(algo == 1){
                 b->set_heuristic_misplaced_tile();
             }else if(algo == 2){
@@ -75,7 +75,7 @@ void solver::operators(eight_puzzle *p, int algo){
         test_tree = check_tree(c);
         if(test_tree == true ){
             if(algo == 0 ){
-                //wo not need to calculate the heuristic
+                //we not need to calculate the heuristic
             }else if(algo == 1){
                 c->set_heuristic_misplaced_tile();
             }else if(algo == 2){
@@ -93,7 +93,7 @@ void solver::operators(eight_puzzle *p, int algo){
          test_tree = check_tree(d);
          if(test_tree == true ){
              if(algo == 0 ){
-                //wo not need to calculate the heuristic
+                //we not need to calculate the heuristic
             }else if(algo == 1){
                 d->set_heuristic_misplaced_tile();
             }else if(algo == 2){
@@ -126,8 +126,8 @@ bool solver::compare_puzzle(int*a,int*b){
             }
     return true;
 }
+//end of flag mess
  int solver::get_moves(){
-     
      return moves;
      
  }
