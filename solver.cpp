@@ -18,24 +18,25 @@ solver::solver(eight_puzzle* p){
     puzzle_tree.push_back(p);
     
 }
-///////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////
 //Important Operator function 
-//Fills priority queue with childrend of the top of the queue.
-//
+//Fills priority queue with childrend of the parant passed in the parameter.
+//Checks vector for repetition in bool check_tree funcntion. 
+//Assaigns the type of huristic based on the "algo" paramenter
+////////////////////////////////////////////////////////////////////////
 
 void solver::operators(eight_puzzle *p, int algo){
     
     bool test_tree = false;
     int blank = p->get_blank();
-    int dp = p->get_depth();        //depth of the parent
+    //int pd = p->get_depth();        //depth of the parent
     
     //check posistion of blank tile to return operators
     if(blank > 2){
         eight_puzzle *a =new eight_puzzle(p->get_puzzle());
-        a->set_depth(dp++);                                 //set deptph of child to 
-        test_tree = check_tree(a);       
+        a->set_depth((p->get_depth())+1);     //set deptph of child to 
         a->blank_up();
-       
+        test_tree = check_tree(a);       
         if(test_tree == true ){
             if(algo == 0 ){
                 //wo not need to calculate the heuristic
@@ -51,8 +52,8 @@ void solver::operators(eight_puzzle *p, int algo){
     }    
     if(blank < 6){
         eight_puzzle *b = new eight_puzzle(p->get_puzzle());
+        b->set_depth((p->get_depth())+1);
         b->blank_down();
-        b->set_depth(dp++);
         test_tree = check_tree(b);
         if(test_tree == true ){
             if(algo == 0 ){
@@ -69,8 +70,8 @@ void solver::operators(eight_puzzle *p, int algo){
     }
     if( blank != 0 && blank != 3 && blank != 6){
         eight_puzzle *c = new eight_puzzle(p->get_puzzle());
+        c->set_depth((p->get_depth())+1);
         c->blank_left();
-        c->set_depth(dp++);
         test_tree = check_tree(c);
         if(test_tree == true ){
             if(algo == 0 ){
@@ -87,8 +88,8 @@ void solver::operators(eight_puzzle *p, int algo){
     }
     if( blank != 2 && blank != 5 && blank != 8){
          eight_puzzle *d = new eight_puzzle(p->get_puzzle());
+         d->set_depth((p->get_depth())+1);
          d->blank_right();
-         d->set_depth(dp++);
          test_tree = check_tree(d);
          if(test_tree == true ){
              if(algo == 0 ){
@@ -173,9 +174,9 @@ void solver::General_search(int algo){
                 break;
             }
             operators(p, algo);        //Algo refers to Uniform cost-0, Misplace_tile-1 Manhattan_distance-2
-            p = puzzle_queue.top();
-            cout << "The best state to expand with a g(n) ="<< p->get_depth()<< " and h(n) = "<<p->get_heuristic()<< " is…\n";
-            p->print();
+            eight_puzzle * p2 = puzzle_queue.top();
+            cout << "The best state to expand with a g(n) ="<< p2->get_depth()<< " and h(n) = "<<p2->get_heuristic()<< " is…\n";
+            p2->print();
             if (choice == 1){
                 cout << "1 - step, 2- solve all \n";
                 cin >> choice;

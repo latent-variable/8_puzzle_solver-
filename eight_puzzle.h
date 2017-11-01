@@ -6,7 +6,7 @@
 //////////////////////////
 class eight_puzzle{
   private: 
-    int puzzle[9] = {0,1,2,3,4,5,6,7,8}; 
+    int puzzle[9] = {1,2,3,4,5,6,7,8,0}; 
     int blank = 0;
     int depth = 0;
     int heuristic = 0;

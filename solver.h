@@ -1,11 +1,5 @@
 #ifndef SOLVER_H
 #define SOLVER_H
-/*
-#include <iostream>
-#include <cstdlib>
-
-#include "eight_puzzle.h"
-*/
 #include <queue>
 #include <vector>
 

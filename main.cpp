@@ -31,16 +31,17 @@ int main() {
     cout << "\nWelcome to Lino Gonzalez Valdovinos 8-puzzle solver.\n";
     
     do{
-        int a[9];
+        int a[9] = {1,2,3,4,5,6,7,8,0}; ;
         eight_puzzle *one = new eight_puzzle();     //8-puzzle object pointer to evaluate
         solver *s = new solver(one);               //solver object to solves puzzle 
         int choice, move;
-        cout << "Type “1” to use a random generated puzzle, or “2” to enter your own puzzle.\n";
+        cout << "\nType “1” to use a random generated puzzle, or “2” to enter your own puzzle.\n";
         cin >> choice;
         
         switch(choice){
             case 1:
                 do{
+                    one->manual_fill(a);
                     one->rand_fill();
                     one->print();
                     cout<< "Choose another 8-puzzle?(1-yes/0-no)\n";
@@ -64,13 +65,13 @@ int main() {
         cout << "1.	Uniform Cost Search\n";
         cout << "2.	A* with the Misplaced Tile heuristic.\n";
         cout << "3.	A* with the Manhattan distance heuristic.\n";
-        cout << "4.	solve yourself.\n";
+        cout << "4.	Who needs AI I'll Solve it myself.\n";
         cin >> choice;
         
         switch(choice){
             case 1:
                 cout<<"Initial state.\n";
-                one->print();
+                one->prinS();
                 s->Uniform_Cost();
                 break;
             case 2:
