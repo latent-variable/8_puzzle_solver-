@@ -71,7 +71,7 @@ int main() {
         switch(choice){
             case 1:
                 cout<<"Initial state.\n";
-                one->prinS();
+                one->print();
                 s->Uniform_Cost();
                 break;
             case 2:
