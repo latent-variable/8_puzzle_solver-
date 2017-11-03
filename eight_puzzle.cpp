@@ -146,6 +146,7 @@ void eight_puzzle::set_heuristic_manhattan_distance(){
     for(int i = 1; i <= 9; i++ ){
          if (puzzle[i-1] == 0){
               continue;
+              //y = 9;
          }else{ y = puzzle[i-1];}
          //only 4 exeptions to this rule out of 81 possibilities that I found so far
          if (i == 3 && puzzle[i-1] == 4 ){

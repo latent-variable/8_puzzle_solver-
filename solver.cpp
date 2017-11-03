@@ -36,7 +36,7 @@ void solver::operators(eight_puzzle *p, int algo){
         eight_puzzle *a =new eight_puzzle(p->get_puzzle());
         a->set_depth((p->get_depth())+1);     //set deptph of child to 
         a->blank_up();
-        test_tree = check_tree(a);       
+        test_tree = check_tree(a);    //check for repetion    
         if(test_tree == true ){
             if(algo == 0 ){
                 //we not need to calculate the heuristic
@@ -170,6 +170,7 @@ void solver::General_search(int algo){
             
             if(solved == true){
                 cout << "Goal!!\n\n";
+                //cout << " Repeated vector size: "<<  puzzle_tree.size()<<endl;
                 final_depth = p->get_depth();
                 break;
             }
