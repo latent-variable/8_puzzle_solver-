@@ -32,6 +32,9 @@ class solver{
         void Uniform_Cost();
         void Misplaced_tile();
         void Manhattan_distance();
+        
+        //extra
+        void print_solved_tree(eight_puzzle*);
     
     private:
     

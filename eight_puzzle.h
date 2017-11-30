@@ -10,6 +10,7 @@ class eight_puzzle{
     int blank = 0;
     int depth = 0;
     int heuristic = 0;
+    eight_puzzle* Parent = NULL;
     
   public:
     eight_puzzle(){};
@@ -37,6 +38,9 @@ class eight_puzzle{
     void rand_fill();
     void manual_fill(int p[]);
     
+    //extras 
+    void set_parent(eight_puzzle*);
+    eight_puzzle* get_parent();
     //check for solution
     bool check_solve();
         

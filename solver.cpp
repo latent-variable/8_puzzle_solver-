@@ -45,6 +45,7 @@ void solver::operators(eight_puzzle *p, int algo){
             }else if(algo == 2){
                 a->set_heuristic_manhattan_distance();
             }
+            a->set_parent(p);
             puzzle_queue.push(a);
             puzzle_tree.push_back(a);
             
@@ -63,6 +64,7 @@ void solver::operators(eight_puzzle *p, int algo){
             }else if(algo == 2){
                 b->set_heuristic_manhattan_distance();
             }
+            b->set_parent(p);
             puzzle_queue.push(b);
             puzzle_tree.push_back(b);
         }
@@ -81,6 +83,7 @@ void solver::operators(eight_puzzle *p, int algo){
             }else if(algo == 2){
                 c->set_heuristic_manhattan_distance();
             }
+            c->set_parent(p);
             puzzle_queue.push(c);
             puzzle_tree.push_back(c);
         }
@@ -99,6 +102,7 @@ void solver::operators(eight_puzzle *p, int algo){
             }else if(algo == 2){
                 d->set_heuristic_manhattan_distance();
             }
+            d->set_parent(p);
             puzzle_queue.push(d);
             puzzle_tree.push_back(d);
         }
@@ -169,9 +173,14 @@ void solver::General_search(int algo){
             solved = p->check_solve();
             
             if(solved == true){
-                cout << "Goal!!\n\n";
-                //cout << " Repeated vector size: "<<  puzzle_tree.size()<<endl;
                 final_depth = p->get_depth();
+                cout << "Goal!!\n\n";
+                cout << "Print solution tree. (1-yes/0-no)"<<endl;
+                cin >> choice;
+                if(choice == 1){
+                    print_solved_tree(p);
+                }
+                
                 break;
             }
             operators(p, algo);        //Algo refers to Uniform cost-0, Misplace_tile-1 Manhattan_distance-2
@@ -194,4 +203,16 @@ void solver::Misplaced_tile(){
 }
 void solver::Manhattan_distance(){
        General_search(2);
+}
+///////////////////////////////////////////////////////////////
+//extra
+///////////////////////////////////////////////////////////////
+void solver::print_solved_tree(eight_puzzle* p){
+    p->print();
+    while(p->get_parent() != NULL){
+        cout<< "      ^ "<<endl;
+        cout<< "      | "<<endl;
+        p = p->get_parent();
+        p->print();
+    }
 }

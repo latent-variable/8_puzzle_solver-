@@ -1,3 +1,6 @@
+Project Report found here:
+https://docs.google.com/document/d/15tTuIDO8qtFdF4gNiK6qGmRGO5VO43roP0dxUALO2cw/edit?usp=sharing
+
 Project: 1	 CS 205. Introduction to Artificial Intelligence
 Due Date: Friday November 3rd
 The Eight Puzzle 
@@ -34,3 +37,4 @@ You must keep the evolving versions of your code, so that, if necessary you can 
 In addition, I will randomly select ten students to demonstrate their program to me, in my office.
 
 You can use a simple text line interface or a more sophisticated GUI (but don’t waste time making it pretty unless you are sure it works and you have lots free time). However your program should generate a trace like the one below, so that it can be tested. 
+///////
